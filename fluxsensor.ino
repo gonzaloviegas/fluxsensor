@@ -36,7 +36,7 @@ void setup() {
 
   // setup relay
   pinMode(relayPin, OUTPUT);
-  digitalWrite(relayPin, LOW); // Apagar el relé inicialmente (estado apagado)
+  digitalWrite(relayPin, HIGH); // Apagar el relé inicialmente (estado apagado)
 
   // Inicializar tiempo de encendido despues de presionar el boton
   Timer1.initialize(relayTimeOnMs);  // Configura TimerOne para el tiempo de encendido del relé
@@ -132,7 +132,7 @@ void buttonTimerInterrupt() {
 
 void startRelay(){
     //Luego de presionar el boton, debe qeudar prendido X tiempo
-    digitalWrite(relayPin, HIGH); //Prender
+    digitalWrite(relayPin, LOW); //Prender
     ignoreButton = true;
     deactivateFlowSensor();
         // Inicializar tiempo de encendido despues de presionar el boton
@@ -143,6 +143,6 @@ void startRelay(){
 
 void stopRelay(){
   Timer1.stop();  // Detén el temporizador cuando ha pasado el tiempo de encendido del relé
-  digitalWrite(relayPin, LOW); // Apagar el relé después de 1 minuto
+  digitalWrite(relayPin, HIGH); // Apagar el relé después de 1 minuto
   ignoreButton = false; //habilitar el botón nuevamente
 }
